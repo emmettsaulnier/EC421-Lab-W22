@@ -1,3 +1,6 @@
+# Ignoring problem set answers
+/problem-sets
+
 # History files
 .Rhistory
 .Rapp.history
