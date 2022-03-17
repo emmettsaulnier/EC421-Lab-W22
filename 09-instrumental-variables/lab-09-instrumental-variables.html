@@ -603,7 +603,7 @@ etable(mod_fs, vcov = &quot;HC1&quot;)</code></pre>
 <pre class="r"><code># Grabbing fitted values  
 income_df$fit_education = fitted.values(mod_fs)</code></pre>
 <p>Finally, we can run the original regression, but use <code>fit_education</code> rather than <code>education</code>.</p>
-<pre class="r"><code># Naive OLS 
+<pre class="r"><code># Second stage model
 mod_tsls = feols(
   data = income_df, 
   fml = wage ~ fit_education + urban + gender + ethnicity + unemp + income
@@ -680,6 +680,7 @@ etable(mod_iv, vcov = &quot;HC1&quot;)</code></pre>
 ## Adj. R2                       0.06003
 ## ---
 ## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Additionally, if you want to estimate using multiple instruments, then you add them to the RHS of the first stage equation. In <code>fixest</code> this would become <code>fml = y ~ x_1 + x_2 | x_endo ~ instr_1 + instr_2</code>.</p>
 </div>
 </div>
 

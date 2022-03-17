@@ -243,7 +243,7 @@ Finally, we can run the original regression, but use `fit_education` rather than
 
 
 ```r
-# Naive OLS 
+# Second stage model
 mod_tsls = feols(
   data = income_df, 
   fml = wage ~ fit_education + urban + gender + ethnicity + unemp + income
@@ -341,3 +341,6 @@ etable(mod_iv, vcov = "HC1", stage = 1)
 ## ---
 ## Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
+
+Additionally, if you want to estimate using multiple instruments, then you add them to the RHS of the first stage equation. In `fixest` this would become `fml = y ~ x_1 + x_2 | x_endo ~ instr_1 + instr_2`.
+
